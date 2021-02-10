@@ -8,11 +8,88 @@
       name="description"
       content="Avia sales app"
     />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="stylesheet" href="../src/fonts/fonts.css" />
+    <link rel="stylesheet" href="style.css" />
     <title>Avia sales App</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <div class="app">
+      <header class="header">
+        <img class="header__logo" src="logo.svg" alt="Logo">
+      </header>
+      <main class="main">
+        <section class="sort">
+          <ul class="sort-list">
+            <li class="sort-list__item"><button class="sort-list__button sort-list__button--active">Самый дешёвый</button></li>
+            <li class="sort-list__item"><button class="sort-list__button">Самый быстрый</button></li>
+          </ul>
+        </section>
+        <section class="filter">
+          <h2 class="filter__header">Количество пересадок</h2>
+          <ul class="filter-list">
+            <li class="filter-list__item"><label class="filter-list__label"><input class="filter-list__checkbox" type="checkbox"><span class="filter-list__checkmark"></span><span>Все</span></label></li>
+            <li class="filter-list__item"><label class="filter-list__label"><input class="filter-list__checkbox" type="checkbox"><span class="filter-list__checkmark"></span><span>Без пересадок</span></label></li>
+            <li class="filter-list__item"><label class="filter-list__label"><input class="filter-list__checkbox" type="checkbox"><span class="filter-list__checkmark"></span><span>1 пересадка</span></label></li>
+            <li class="filter-list__item"><label class="filter-list__label"><input class="filter-list__checkbox" type="checkbox"><span class="filter-list__checkmark"></span><span>2 пересадки</span></label></li>
+            <li class="filter-list__item"><label class="filter-list__label"><input class="filter-list__checkbox" type="checkbox"><span class="filter-list__checkmark"></span><span>3 пересадки</span></label></li>
+          </ul>
+        </section>
+        <section class="flights">
+          <ul class="flights-list">
+            <li class="flights-list__item">
+              <article class="flight">
+                <header class="flight-header flight__header">
+                  <span class="flight-header__price">13 400 Р</span>
+                  <img  class="flight-header__img" src="s7_airlines.svg" alt="S7 Airlines">
+                </header>
+                <section class="flight-description">
+                  <div class="flight-description__column">
+                    <h3 class="flight-description__title">MOW - HKT</h3><span class="flight-description__info">10:45 - 08:00</span>
+                  </div>
+                  <div class="flight-description__column">
+                    <h3 class="flight-description__title">В ПУТИ</h3><span class="flight-description__info">21ч 15м</span>
+                  </div>
+                  <div class="flight-description__column">
+                    <h3 class="flight-description__title">2 ПЕРЕСАДКИ</h3><span class="flight-description__info">HGK, JNB</span>
+                  </div>
+                </section>
+                <section class="flight-description">
+                  <div class="flight-description__column">
+                    <h3 class="flight-description__title">MOW - HKT</h3><span class="flight-description__info">11:20 - 00:50</span>
+                  </div>
+                  <div class="flight-description__column">
+                    <h3 class="flight-description__title">В ПУТИ</h3><span class="flight-description__info">13ч 30м</span>
+                  </div>
+                  <div class="flight-description__column">
+                    <h3 class="flight-description__title">2 ПЕРЕСАДКИ</h3><span class="flight-description__info">HGK</span>
+                  </div>
+                </section>
+              </article>
+            </li>
+            <li class="flights-list__item">
+              <article class="flight">
+                <header class="flight-header flight__header">
+                  <span class="flight-header__price">13 400 Р</span>
+                  <img  class="flight-header__img" src="s7_airlines.svg" alt="S7 Airlines">
+                </header>
+                <section class="flight-description">
+                  <div><h3 class="flight-description__title">MOW - HKT</h3><span class="flight-description__info">10:45 - 08:00</span></div>
+                  <div><h3 class="flight-description__title">В ПУТИ</h3><span class="flight-description__info">21ч 15м</span></div>
+                  <div><h3 class="flight-description__title">2 ПЕРЕСАДКИ</h3><span class="flight-description__info">HGK, JNB</span></div>
+                </section>
+                <section class="flight-description">
+                  <div><h3 class="flight-description__title">MOW - HKT</h3><span class="flight-description__info">11:20 - 00:50</span></div>
+                  <div><h3 class="flight-description__title">В ПУТИ</h3><span class="flight-description__info">13ч 30м</span></div>
+                  <div><h3 class="flight-description__title">2 ПЕРЕСАДКИ</h3><span class="flight-description__info">HGK</span></div>
+                </section>
+              </article>
+            </li>
+          </ul>
+        </section>
+        <button class="show-more">Показать ещё 5 билетов!</button>
+      </main>
+    </div>
   </body>
 </html>

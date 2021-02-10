@@ -3,7 +3,9 @@ import './App.module.scss';
 
 function App() {
   return (
-    <div className="App" />
+    <div className="App">
+      <section />
+    </div>
   );
 }
 

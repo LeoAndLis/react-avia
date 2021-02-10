@@ -1,0 +1,238 @@
+html,
+body {
+  background-color: #F3F7FA;
+  font-family: 'Open sans', Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+ul, p, h2, h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+    margin: 0 auto;
+    max-width: 754px;
+    padding: 0 20px 50px;
+}
+
+.header {
+    display: flex;
+    height: 160px;
+    justify-content: center;
+}
+
+.header__logo {
+    align-self: center;
+}
+
+.main {
+    display: grid;
+    gap: 20px;
+    grid-template-areas:
+            "filter sort"
+            "filter flights"
+            "filter more";
+    grid-template-columns: 1fr 2.16fr;
+}
+
+.filter {
+    background: #FFFFFF;
+    border-radius: 5px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    grid-area: filter;
+    height: fit-content;
+    max-width: 232px;
+    padding: 10px 0;
+}
+
+.filter__header {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 10px 20px;
+    text-transform: uppercase;
+}
+
+.filter-list__item {
+    font-size: 13px;
+    font-weight: normal;
+}
+
+.filter-list__label {
+    display: flex;
+    gap: 10px;
+    height: 40px;
+    padding: 10px 20px;
+}
+
+.filter-list__label:hover {
+    background-color: #F1FCFF;
+}
+
+.filter-list__checkbox {
+    display: none;
+}
+
+.filter-list__checkmark {
+    border: 1px solid #9ABBCE;
+    border-radius: 2px;
+    box-sizing: border-box;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+}
+
+.filter-list__checkbox:checked~.filter-list__checkmark {
+    border-color: #2196F3;
+    background: url("check_mark.svg") no-repeat 50% 50%;
+}
+
+.sort {
+    grid-area: sort;
+}
+
+.sort-list {
+    display: flex;
+}
+
+.sort-list__item {
+    margin-left: -1px;
+    width: 100%;
+}
+
+.sort-list__item:first-child {
+    margin-left: 0;
+}
+
+.sort-list__button {
+    background-color: #FFFFFF;
+    border: 1px solid #DFE5EC;
+    color: #4A4A4A;
+    font-size: 12px;
+    font-weight: 600;
+    height: 50px;
+    letter-spacing: 0.5px;
+    width: 100%;
+    text-transform: uppercase;
+}
+
+.sort-list__item:first-child .sort-list__button {
+    border-radius: 5px 0 0 5px;
+}
+
+.sort-list__item:last-child .sort-list__button {
+    border-radius: 0 5px 5px 0;
+}
+
+.sort-list__button--active {
+    background-color: #2196F3;
+    border: none;
+    color: #FFFFFF;
+}
+
+.flights {
+    grid-area: flights;
+}
+
+.flights-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.flights-list__item {
+    background: #FFFFFF;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    max-width: 502px;
+    padding: 20px;
+}
+
+.flight-header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    height: 36px;
+    margin-bottom: 10px;
+}
+
+.flight-header__price {
+    color: #2196F3;
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.flight-description {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 0.8fr 1fr;
+    margin-top: 10px;
+}
+
+.flight-description__title {
+    color: #A0B0B9;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 18px;
+    text-transform: uppercase;
+}
+
+.flight-description__info {
+    color: #4A4A4A;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 21px;
+}
+.show-more {
+    background-color: #2196F3;
+    border: none;
+    border-radius: 5px;
+    color: #FFFFFF;
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    grid-area: more;
+    height: 50px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+@media screen and (max-width: 726px) {
+    .app {
+        max-width: 522px;
+        padding: 0 10px 30px;
+    }
+
+    .main {
+        display: grid;
+        gap: 20px;
+        grid-template-areas:
+            "sort"
+            "filter"
+            "flights"
+            "more";
+        grid-template-columns: 1fr;
+    }
+
+    .filter {
+        max-width: 100%
+    }
+}
