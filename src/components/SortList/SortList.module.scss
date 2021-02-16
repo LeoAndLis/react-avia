@@ -1,0 +1,42 @@
+.sort {
+  grid-area: sort;
+
+  &-list {
+    display: flex;
+
+    &__item {
+      margin-left: -1px;
+      width: 100%;
+
+      &:first-child {
+        margin-left: 0;
+
+        & .sort-list__button {
+          border-radius: 5px 0 0 5px;
+        }
+      }
+
+      &:last-child .sort-list__button {
+        border-radius: 0 5px 5px 0;
+      }
+    }
+
+    &__button {
+      background-color: #ffffff;
+      border: 1px solid #dfe5ec;
+      color: #4a4a4a;
+      font-size: 12px;
+      font-weight: 600;
+      height: 50px;
+      letter-spacing: 0.5px;
+      width: 100%;
+      text-transform: uppercase;
+
+      &--active {
+        background-color: #2196f3;
+        border: none;
+        color: #ffffff;
+      }
+    }
+  }
+}

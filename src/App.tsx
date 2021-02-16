@@ -1,10 +1,24 @@
 import React from 'react';
-import './App.module.scss';
+import classes from './App.module.scss';
+import logo from './images/logo.svg';
+import Filters from './components/Filters/Filters';
+import FlightsList from './components/FlightsList/FlightsList';
+import SortList from './components/SortList/SortList';
 
 function App() {
   return (
-    <div className="App">
-      <section />
+    <div className={classes.app}>
+      <header className={classes.header}>
+        <img className={classes.header__logo} src={logo} alt="Logo" />
+      </header>
+      <main className={classes.main}>
+        <SortList />
+        <Filters />
+        <section className={classes.flights}>
+          <FlightsList />
+        </section>
+        <button className={classes['show-more']} type="button">Показать ещё 5 билетов!</button>
+      </main>
     </div>
   );
 }

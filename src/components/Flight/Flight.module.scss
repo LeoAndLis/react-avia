@@ -1,0 +1,38 @@
+.flight {
+  &-header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    height: 36px;
+    margin-bottom: 10px;
+
+    &__price {
+      color: #2196f3;
+      font-size: 24px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+  }
+
+  &-description {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 0.8fr 1fr;
+    margin-top: 10px;
+
+    &__title {
+      color: #a0b0b9;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 18px;
+      text-transform: uppercase;
+    }
+
+    &__info {
+      color: #4a4a4a;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 21px;
+    }
+  }
+}

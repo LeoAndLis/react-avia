@@ -1,0 +1,13 @@
+.flights-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    &__item {
+        background: #FFFFFF;
+        box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        max-width: 502px;
+        padding: 20px;
+    }
+}
