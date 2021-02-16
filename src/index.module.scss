@@ -2,9 +2,13 @@
 
 html,
 body {
-  font-family: Inter, Arial, sans-serif;
-  font-size: 14px;
+  background-color: #F3F7FA;
+  font-family: 'Open sans', Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
   height: 100%;
+  margin: 0;
+  padding: 0;
   width: 100%;
 }
 
@@ -19,12 +23,7 @@ ul {
   list-style: none;
 }
 
-ul, p, h2 {
+ul, p, h2, h3 {
   margin: 0;
   padding: 0;
-}
-
-img {
-  height: 100%;
-  width: 100%;
 }
