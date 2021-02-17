@@ -4,8 +4,11 @@ import logo from './images/logo.svg';
 import Filters from './components/Filters/Filters';
 import FlightsList from './components/FlightsList/FlightsList';
 import SortList from './components/SortList/SortList';
+import TicketsService from './services/TicketsService';
 
 function App() {
+  const ticketsService = new TicketsService();
+  ticketsService.getTickets().then((result) => console.log(result));
   return (
     <div className={classes.app}>
       <header className={classes.header}>
