@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './App.module.scss';
 import logo from './images/logo.svg';
 import Filters from './components/Filters/Filters';
-import FlightsList from './components/FlightsList/FlightsList';
+import TicketsList from './components/TicketsList/TicketsList';
 import SortList from './components/SortList/SortList';
 import TicketsService from './services/TicketsService';
 
@@ -18,7 +18,7 @@ function App() {
         <SortList />
         <Filters />
         <section className={classes.flights}>
-          <FlightsList />
+          <TicketsList />
         </section>
         <button className={classes['show-more']} type="button">Показать ещё 5 билетов!</button>
       </main>
