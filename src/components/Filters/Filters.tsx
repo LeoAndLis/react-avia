@@ -1,47 +1,40 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import classes from './Filters.module.scss';
+import { setFilterAction } from '../../store/actions/actions';
 
-const Filters = () => (
-  <section className={classes.filter}>
-    <h2 className={classes.filter__header}>Количество пересадок</h2>
-    <ul className={classes['filter-list']}>
-      <li className={classes['filter-list__item']}>
-        <label className={classes['filter-list__label']}>
-          <input className={classes['filter-list__checkbox']} type="checkbox" />
-          <span className={classes['filter-list__checkmark']} />
-          <span>Все</span>
-        </label>
-      </li>
-      <li className={classes['filter-list__item']}>
-        <label className={classes['filter-list__label']}>
-          <input className={classes['filter-list__checkbox']} type="checkbox" />
-          <span className={classes['filter-list__checkmark']} />
-          <span>Без пересадок</span>
-        </label>
-      </li>
-      <li className={classes['filter-list__item']}>
-        <label className={classes['filter-list__label']}>
-          <input className={classes['filter-list__checkbox']} type="checkbox" />
-          <span className={classes['filter-list__checkmark']} />
-          <span>1 пересадка</span>
-        </label>
-      </li>
-      <li className={classes['filter-list__item']}>
-        <label className={classes['filter-list__label']}>
-          <input className={classes['filter-list__checkbox']} type="checkbox" />
-          <span className={classes['filter-list__checkmark']} />
-          <span>2 пересадки</span>
-        </label>
-      </li>
-      <li className={classes['filter-list__item']}>
-        <label className={classes['filter-list__label']}>
-          <input className={classes['filter-list__checkbox']} type="checkbox" />
-          <span className={classes['filter-list__checkmark']} />
-          <span>3 пересадки</span>
-        </label>
-      </li>
-    </ul>
-  </section>
-);
+const Filters = (props: any) => {
+  const { filters, toggleFilter } = props;
+  const filterItems = [];
+  for (const filterId in filters) {
+    if (Object.prototype.hasOwnProperty.call(filters, filterId)) {
+      filterItems.push(
+        <li key={filterId} className={classes['filter-list__item']}>
+          <label className={classes['filter-list__label']}>
+            <input
+              className={classes['filter-list__checkbox']}
+              type="checkbox"
+              checked={filters[filterId].isChecked}
+              onChange={() => toggleFilter(filterId)}
+            />
+            <span className={classes['filter-list__checkmark']} />
+            <span>{filters[filterId].label}</span>
+          </label>
+        </li>);
+    }
+  }
+  return (
+    <section className={classes.filter}>
+      <h2 className={classes.filter__header}>Количество пересадок</h2>
+      <ul className={classes['filter-list']}>
+        { filterItems }
+      </ul>
+    </section>
+  );
+};
 
-export default Filters;
+const mapStateToProps = (state: any) => ({ filters: state.filters });
+
+const mapDispatchToProps = (dispatch: any) => ({ toggleFilter: (value: number) => dispatch(setFilterAction(value)) });
+
+export default connect(mapStateToProps, mapDispatchToProps)(Filters);

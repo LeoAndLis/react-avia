@@ -1,14 +1,10 @@
-import { SET_SORT } from '../types/types';
-import { SORT_MAP } from '../../state/state';
+import { combineReducers } from 'redux';
+import sortReducer from './sortReducer';
+import filterReducer from './filterReducer';
 
-const reducer = (state: any = { sortId: SORT_MAP.fast }, action: any) => {
-  const { payload } = action;
-  switch (action.type) {
-    case SET_SORT:
-      return payload;
-    default:
-      return state;
-  }
-};
+const reducer = combineReducers({
+  sortId: sortReducer,
+  filters: filterReducer,
+});
 
 export default reducer;

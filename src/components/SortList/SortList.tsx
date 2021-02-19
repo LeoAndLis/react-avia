@@ -42,10 +42,6 @@ const SortList = (props: any) => {
 
 const mapStateToProps = (state: any) => ({ sortId: state.sortId });
 
-const mapDispatchToProps = (dispatch: any) => ({ setSort: (value: number) => {
-  console.log(value);
-  return dispatch(setSortAction(value)); 
-},
-});
+const mapDispatchToProps = (dispatch: any) => ({ setSort: (value: number) => dispatch(setSortAction(value)) });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SortList);
