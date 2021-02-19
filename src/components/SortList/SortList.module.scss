@@ -25,12 +25,14 @@
       background-color: #ffffff;
       border: 1px solid #dfe5ec;
       color: #4a4a4a;
+      cursor: pointer;
       font-size: 12px;
       font-weight: 600;
       height: 50px;
       letter-spacing: 0.5px;
-      width: 100%;
+      outline: none;
       text-transform: uppercase;
+      width: 100%;
 
       &--active {
         background-color: #2196f3;
