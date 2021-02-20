@@ -7,7 +7,6 @@ import { setSortAction } from '../../store/actions/actions';
 
 const SortList = (props: any) => {
   const { sortId, setSort } = props;
-  console.log('sort list', sortId);
   return (
     <section className={classes.sort}>
       <ul className={classes['sort-list']}>
