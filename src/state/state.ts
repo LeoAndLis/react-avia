@@ -2,6 +2,8 @@ export type StateType = {
   sortId: number;
   filters: Record<number, boolean>;
   ticketsList: any;
+  ticketsFetching: boolean;
+  ticketsFetchingError: boolean;
 };
 
 export enum SortValues {
