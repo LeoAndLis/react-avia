@@ -1,9 +1,9 @@
 import { SET_FILTER } from '../types/types';
-import { FILTERS_MAP } from '../../state/state';
+import { FilterValues } from '../../state/state';
 
 type FilterActionType = {
   type: string;
-  payload: number;
+  payload: string;
 };
 
 type FilterDataType = {
@@ -11,17 +11,19 @@ type FilterDataType = {
   isChecked: boolean;
 };
 
-const filterItems: Record<number, FilterDataType> = {
-  [FILTERS_MAP.all]: { label: 'Все', isChecked: true },
-  [FILTERS_MAP['0_transfers']]: { label: 'Без пересадок', isChecked: true },
-  [FILTERS_MAP['1_transfers']]: { label: '1 пересадка', isChecked: true },
-  [FILTERS_MAP['2_transfers']]: { label: '2 пересадки', isChecked: true },
-  [FILTERS_MAP['3_transfers']]: { label: '3 пересадки', isChecked: true },
+export type FilterType = Record<string, FilterDataType>;
+
+const filterItems: FilterType = {
+  [FilterValues.all]: { label: 'Все', isChecked: true },
+  [FilterValues['0_transfers']]: { label: 'Без пересадок', isChecked: true },
+  [FilterValues['1_transfers']]: { label: '1 пересадка', isChecked: true },
+  [FilterValues['2_transfers']]: { label: '2 пересадки', isChecked: true },
+  [FilterValues['3_transfers']]: { label: '3 пересадки', isChecked: true },
 };
 
-const isAllFiltersChecked = (filters: Record<number, FilterDataType>): boolean => {
+const isAllFiltersChecked = (filters: FilterType): boolean => {
   for ( const id in filters ) {
-    if (Object.prototype.hasOwnProperty.call(filters, id) && +id !== FILTERS_MAP.all) {
+    if (Object.prototype.hasOwnProperty.call(filters, id) && id !== FilterValues.all) {
       if ( !filters[id].isChecked ) {
         return false;
       }
@@ -30,28 +32,27 @@ const isAllFiltersChecked = (filters: Record<number, FilterDataType>): boolean =
   return true;
 };
 
-const filterReducer = (state: Record<number, FilterDataType> = filterItems, action: FilterActionType) => {
+const filterReducer = (state: FilterType = filterItems, action: FilterActionType) => {
   const { type, payload: filterId } = action;
   const filters = { ...state };
   switch (type) {
     case SET_FILTER:
       filters[filterId].isChecked = !filters[filterId].isChecked;
 
-      switch (+filterId) {
-        case FILTERS_MAP.all:
+      switch (filterId) {
+        case FilterValues.all:
           for (const id in filters) {
-            if (Object.prototype.hasOwnProperty.call(filters, id) && +id !== FILTERS_MAP.all) {
-              filters[id].isChecked = filters[FILTERS_MAP.all].isChecked;
+            if (Object.prototype.hasOwnProperty.call(filters, id) && id !== FilterValues.all) {
+              filters[id].isChecked = filters[FilterValues.all].isChecked;
             }
           }
           return filters;
 
         default:
-          console.log('filters NOT all', filterId);
           if (!filters[filterId].isChecked) {
-            filters[FILTERS_MAP.all].isChecked = false;
+            filters[FilterValues.all].isChecked = false;
           } else if (isAllFiltersChecked(filters)) {
-            filters[FILTERS_MAP.all].isChecked = true;
+            filters[FilterValues.all].isChecked = true;
           }
           return filters;
       }

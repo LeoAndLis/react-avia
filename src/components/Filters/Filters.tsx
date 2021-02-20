@@ -2,8 +2,20 @@ import React from 'react';
 import { connect } from 'react-redux';
 import classes from './Filters.module.scss';
 import { setFilterAction } from '../../store/actions/actions';
+import { FilterType } from '../../store/reducers/filterReducer';
 
-const Filters = (props: any) => {
+type FiltersPropsType = {
+  filters: FilterType;
+  toggleFilter: (value: string) => void;
+};
+
+type StateType = {
+  sortId: number;
+  filters: FilterType;
+  ticketsList: any;
+};
+
+const Filters = (props: FiltersPropsType) => {
   const { filters, toggleFilter } = props;
   const filterItems = [];
   for (const filterId in filters) {
@@ -33,8 +45,8 @@ const Filters = (props: any) => {
   );
 };
 
-const mapStateToProps = (state: any) => ({ filters: state.filters });
+const mapStateToProps = (state: StateType) => ({ filters: state.filters });
 
-const mapDispatchToProps = (dispatch: any) => ({ toggleFilter: (value: number) => dispatch(setFilterAction(value)) });
+const mapDispatchToProps = (dispatch: any) => ({ toggleFilter: (value: string) => dispatch(setFilterAction(value)) });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filters);

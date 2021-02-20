@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import classes from './SortList.module.scss';
-import { SORT_MAP } from '../../state/state';
+import { SortValues } from '../../state/state';
 import { setSortAction } from '../../store/actions/actions';
 
 const SortList = (props: any) => {
@@ -16,7 +16,7 @@ const SortList = (props: any) => {
             onClick={() => setSort(0)}
             className={classNames(
               classes['sort-list__button'],
-              sortId === SORT_MAP.cheep ? classes['sort-list__button--active'] : '',
+              sortId === SortValues.cheep ? classes['sort-list__button--active'] : '',
             )}
             type="button"
           >
@@ -28,7 +28,7 @@ const SortList = (props: any) => {
           onClick={() => setSort(1)}
             className={classNames(
               classes['sort-list__button'],
-              sortId === SORT_MAP.fast ? classes['sort-list__button--active'] : '',
+              sortId === SortValues.fast ? classes['sort-list__button--active'] : '',
             )}
             type="button"
           >
