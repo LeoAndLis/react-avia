@@ -9,16 +9,17 @@ type FilterActionType = {
 type FilterDataType = {
   label: string;
   isChecked: boolean;
+  value: number;
 };
 
 export type FilterType = Record<string, FilterDataType>;
 
 const filterItems: FilterType = {
-  [FilterValues.all]: { label: 'Все', isChecked: true },
-  [FilterValues['0_transfers']]: { label: 'Без пересадок', isChecked: true },
-  [FilterValues['1_transfers']]: { label: '1 пересадка', isChecked: true },
-  [FilterValues['2_transfers']]: { label: '2 пересадки', isChecked: true },
-  [FilterValues['3_transfers']]: { label: '3 пересадки', isChecked: true },
+  [FilterValues.all]: { label: 'Все', isChecked: true, value: -1 },
+  [FilterValues['0_transfers']]: { label: 'Без пересадок', isChecked: true, value: 0 },
+  [FilterValues['1_transfers']]: { label: '1 пересадка', isChecked: true, value: 1 },
+  [FilterValues['2_transfers']]: { label: '2 пересадки', isChecked: true, value: 2 },
+  [FilterValues['3_transfers']]: { label: '3 пересадки', isChecked: true, value: 3 },
 };
 
 const isAllFiltersChecked = (filters: FilterType): boolean => {

@@ -18,7 +18,7 @@ const ticketsReducer = (state: TicketType[] = [], action: any) => {
   const { type, payload: tickets } = action;
   switch (type) {
     case ADD_TICKETS:
-      return { ...state, ...tickets };
+      return [ ...state, ...tickets ];
     default:
       return state;
   }
