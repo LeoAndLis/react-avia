@@ -18,9 +18,9 @@ type TicketsListContainerType = {
 
 const filteringTickets = (tickets: TicketData[], filters: FilterType) => {
   const isAllFiltersUnChecked = (): boolean => {
-    for ( const id in filters ) {
+    for (const id in filters) {
       if (Object.prototype.hasOwnProperty.call(filters, id)) {
-        if ( filters[id].isChecked ) {
+        if (filters[id].isChecked) {
           return false;
         }
       }
@@ -28,20 +28,20 @@ const filteringTickets = (tickets: TicketData[], filters: FilterType) => {
     return true;
   };
 
-  if ( isAllFiltersUnChecked() ) {
+  if (isAllFiltersUnChecked()) {
     return [];
   }
 
-  if ( filters[FilterValues.all].isChecked ) {
+  if (filters[FilterValues.all].isChecked) {
     return tickets;
   }
 
   return tickets.filter((ticket) => {
-    for ( const id in filters ) {
+    for (const id in filters) {
       if (Object.prototype.hasOwnProperty.call(filters, id)) {
-        if ( filters[id].isChecked
+        if (filters[id].isChecked
           && (ticket.segments[0].stops.length === filters[id].value
-            || ticket.segments[1].stops.length === filters[id].value )) {
+            || ticket.segments[1].stops.length === filters[id].value)) {
           return true;
         }
       }
@@ -52,43 +52,85 @@ const filteringTickets = (tickets: TicketData[], filters: FilterType) => {
 
 const sortingTickets = (sortId: number) => (ticketOne: TicketData, ticketTwo: TicketData) => {
   if (sortId === SortValues.cheep) {
-    if ( ticketOne.price > ticketTwo.price ) {return 1;}
-    if ( ticketOne.price < ticketTwo.price ) {return -1;}
+    if (ticketOne.price > ticketTwo.price) {
+      return 1;
+    }
+    if (ticketOne.price < ticketTwo.price) {
+      return -1;
+    }
     return 0;
   }
 
   if (sortId === SortValues.fast) {
     const durationOne = ticketOne.segments[0].duration + ticketOne.segments[1].duration;
     const durationTwo = ticketTwo.segments[0].duration + ticketTwo.segments[1].duration;
-    if ( durationOne > durationTwo ) {return 1;}
-    if ( durationOne < durationTwo ) {return -1;}
+    if (durationOne > durationTwo) {
+      return 1;
+    }
+    if (durationOne < durationTwo) {
+      return -1;
+    }
     return 0;
   }
-  
+
   return 0;
 };
 
+const formatTickets = (tickets: TicketData[]) => tickets.map((ticket) => {
+  const { price, carrier } = ticket;
+  const {
+    origin: originFrom,
+    destination: destinationFrom,
+    date: dateFrom,
+    stops: stopsFrom,
+    duration: durationFrom,
+  } = ticket.segments[0];
+  const {
+    origin: originTo,
+    destination: destinationTo,
+    date: dateTo,
+    stops: stopsTo,
+    duration: durationTo,
+  } = ticket.segments[1];
+
+  const id = `${price}${carrier}${dateFrom}${dateTo}${durationFrom}${durationTo}`;
+  const carrierImg = `//pics.avs.io/99/36/${carrier}.png`;
+  const titleFrom = `${originFrom} - ${destinationFrom}`;
+  const stopsStringFrom = stopsFrom.join(',');
+  const durationFormattedFrom = `${Math.floor(durationFrom / 60)}:${durationFrom % 60}`;
+
+  const titleTo = `${originTo} - ${destinationTo}`;
+  const stopsStringTo = stopsTo.join(',');
+  const durationFormattedTo = `${Math.floor(durationTo / 60)}:${durationTo % 60}`;
+
+  const segmentFrom = { titleFrom, dateFrom, stopsFrom, stopsStringFrom, durationFormattedFrom };
+
+  const segmentTo = { titleTo, dateTo, stopsTo, stopsStringTo, durationFormattedTo };
+
+  return { id, price, carrier, carrierImg, segments: [segmentFrom, segmentTo] };
+});
+
 const TicketsListContainer = ({ tickets, filters, sortId, isLoaded, loadingError, getTickets }: TicketsListContainerType) => {
-  
+
   useEffect(() => {
     getTickets();
   },
   // eslint-disable-next-line react-hooks/exhaustive-deps
   []);
-  
+
   const visibleTicketsNumber = 5;
 
-  console.log(tickets, filters, sortId, isLoaded, loadingError);
-  
+  console.log(isLoaded, loadingError);
+
   const filteredTickets = filteringTickets(tickets, filters);
-  console.log(filteredTickets);
-  const resultTickets = filteredTickets.sort(sortingTickets(sortId)).slice(visibleTicketsNumber);
+
+  const resultTickets = filteredTickets.sort(sortingTickets(sortId)).slice(0, visibleTicketsNumber);
 
   console.log('result tickets', resultTickets);
 
   return (
     <>
-      <TicketsList />
+      <TicketsList ticketsList={formatTickets(resultTickets)} />
     </>
   );
 };
