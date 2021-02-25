@@ -1,4 +1,5 @@
 export const ADD_TICKETS = 'ADD_TICKET';
+export const ADD_VISIBLE_TICKETS = 'ADD_VISIBLE_TICKETS';
 export const SET_FILTER = 'SET_FILTER';
 export const SET_IS_LOADED = 'SET_IS_LOADED';
 export const SET_IS_LOADING_ERROR = 'SET_IS_LOADING_ERROR';

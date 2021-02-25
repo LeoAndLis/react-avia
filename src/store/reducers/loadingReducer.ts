@@ -1,11 +1,11 @@
 import { SET_IS_LOADED } from '../types/types';
 
-type LoadingType = {
+type LoadingActionType = {
   type: string;
   payload: boolean;
 };
 
-const loadingReducer = (state: boolean = true, action: LoadingType) => {
+const loadingReducer = (state: boolean = false, action: LoadingActionType) => {
   const { type, payload } = action;
   switch (type) {
     case SET_IS_LOADED:

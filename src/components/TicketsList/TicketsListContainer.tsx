@@ -11,7 +11,7 @@ interface TicketsListContainerType extends StateType {
   getTickets: () => void;
 }
 
-const TicketsListContainer = ({ tickets, filters, sortId, isLoaded, loadingError, getTickets }: TicketsListContainerType) => {
+const TicketsListContainer = ({ tickets, filters, sortId, isLoaded, loadingError, visibleTicketsCount, getTickets }: TicketsListContainerType) => {
 
   useEffect(() => {
     getTickets();
@@ -19,14 +19,20 @@ const TicketsListContainer = ({ tickets, filters, sortId, isLoaded, loadingError
   // eslint-disable-next-line react-hooks/exhaustive-deps
   []);
 
-  const visibleTicketsNumber = 5;
+  useEffect(() => {
+    console.log('use effect', isLoaded);
+    if ( !isLoaded ) {
+      getTickets();
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ tickets ]);
 
   console.log(isLoaded, loadingError);
 
   const resultTickets =
     filteringTickets(tickets, filters)
       .sort(sortingTickets(sortId))
-      .slice(0, visibleTicketsNumber);
+      .slice(0, visibleTicketsCount);
 
   if (resultTickets.length === 0) {
     return <Alert type="info" message="Рейсов, подходящих под заданные фильтры, не найдено" />;
@@ -45,6 +51,7 @@ const mapStateToProps = (state: StateType) => ({
   loadingError: state.loadingError,
   sortId: state.sortId,
   tickets: state.tickets,
+  visibleTicketsCount: state.visibleTicketsCount,
 });
 
 const mapDispatchToProps = (dispatch: any) => ({ getTickets: () => dispatch(addTicketsAction()) });

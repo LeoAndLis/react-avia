@@ -13,4 +13,4 @@ export enum FilterValues {
 
 export const IMG_PATH: string = '//pics.avs.io/99/36/{IMG_NAME}.png';
 
-export const VISIBLE_TICKETS_COUNT = 5;
+export const ADD_VISIBLE_TICKETS_COUNT = 5;

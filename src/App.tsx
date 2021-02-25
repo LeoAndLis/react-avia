@@ -1,9 +1,11 @@
 import React from 'react';
-import classes from './App.module.scss';
 import logo from './images/logo.svg';
 import Filters from './components/Filters/Filters';
 import TicketsListContainer from './components/TicketsList/TicketsListContainer';
 import SortList from './components/SortList/SortList';
+import AddVisibleTickets from './components/AddVisibleTickets/AddVisibleTickets';
+
+import classes from './App.module.scss';
 
 function App() {
   return (
@@ -17,7 +19,7 @@ function App() {
         <section className={classes.flights}>
           <TicketsListContainer />
         </section>
-        <button className={classes['show-more']} type="button">Показать ещё 5 билетов!</button>
+        <AddVisibleTickets />
       </main>
     </div>
   );

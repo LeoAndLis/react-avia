@@ -46,4 +46,5 @@ export type StateType = {
   loadingError: boolean;
   sortId: number;
   tickets: TicketType[];
+  visibleTicketsCount: number;
 };

@@ -6,8 +6,7 @@ type TicketsActionType = {
   payload: TicketType[];
 };
 
-const ticketsReducer = (state: TicketType[] = [], action: TicketsActionType): TicketType[] | [] => {
-  const { type, payload: tickets } = action;
+const ticketsReducer = (state: TicketType[] = [], { type, payload: tickets }: TicketsActionType): TicketType[] | [] => {
   switch (type) {
     case ADD_TICKETS:
       return [ ...state, ...tickets ];
