@@ -1,20 +1,13 @@
 import { SET_FILTER } from '../types/types';
-import { FilterValues } from '../../state/state';
+import { FilterValues } from '../../lib/constants';
+import { FilterType } from '../../lib/types';
 
 type FilterActionType = {
   type: string;
   payload: string;
 };
 
-type FilterDataType = {
-  label: string;
-  isChecked: boolean;
-  value: number;
-};
-
-export type FilterType = Record<string, FilterDataType>;
-
-const filterItems: FilterType = {
+const filterDefaultItems: FilterType = {
   [FilterValues.all]: { label: 'Все', isChecked: true, value: -1 },
   [FilterValues['0_transfers']]: { label: 'Без пересадок', isChecked: true, value: 0 },
   [FilterValues['1_transfers']]: { label: '1 пересадка', isChecked: true, value: 1 },
@@ -33,7 +26,7 @@ const isAllFiltersChecked = (filters: FilterType): boolean => {
   return true;
 };
 
-const filterReducer = (state: FilterType = filterItems, action: FilterActionType) => {
+const filterReducer = (state: FilterType = filterDefaultItems, action: FilterActionType): FilterType => {
   const { type, payload: filterId } = action;
   const filters = { ...state };
   switch (type) {
@@ -59,7 +52,7 @@ const filterReducer = (state: FilterType = filterItems, action: FilterActionType
       }
 
     default:
-      return filters;
+      return state;
   }
 };
 

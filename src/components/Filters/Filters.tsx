@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import classes from './Filters.module.scss';
 import { setFilterAction } from '../../store/actions/actions';
-import { FilterType } from '../../store/reducers/filterReducer';
+import { FilterType } from '../../lib/types';
+
+import classes from './Filters.module.scss';
 
 type FiltersPropsType = {
   filters: FilterType;

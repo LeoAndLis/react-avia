@@ -1,20 +1,12 @@
 import { ADD_TICKETS } from '../types/types';
+import { TicketType } from '../../lib/types';
 
-type TicketSegmentType = {
-  origin: string;
-  destination: string;
-  date: string;
-  stops: string[];
-  duration: number;
+type TicketsActionType = {
+  type: string;
+  payload: TicketType[];
 };
 
-export type TicketType = {
-  price: number;
-  carrier: string;
-  segments: TicketSegmentType[];
-};
-
-const ticketsReducer = (state: TicketType[] = [], action: any) => {
+const ticketsReducer = (state: TicketType[] = [], action: TicketsActionType): TicketType[] | [] => {
   const { type, payload: tickets } = action;
   switch (type) {
     case ADD_TICKETS:

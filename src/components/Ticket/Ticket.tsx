@@ -1,28 +1,34 @@
 import React from 'react';
 import classNames from 'classnames';
+import { FormattedTicketType } from '../../lib/types';
+
 import classes from './Ticket.module.scss';
 
-const Ticket = (props: any) => {
-  const { ticket } = props;
+type TicketPropsType = {
+  ticket: FormattedTicketType;
+};
+
+const Ticket = ({ ticket }: TicketPropsType) => {
   const {
     price,
     carrierImg,
     segments: [
       {
-        titleFrom,
-        dateFrom,
-        stopsFrom,
-        stopsStringFrom,
-        durationFormattedFrom,
+        title: titleThere,
+        departure: departureThere,
+        stopsTitle: stopsTitleThere,
+        stops: stopsStringThere,
+        duration: durationFormattedThere,
       },
       {
-        titleTo,
-        dateTo,
-        stopsTo,
-        stopsStringTo,
-        durationFormattedTo,
+        title: titleBack,
+        departure: departureBack,
+        stopsTitle: stopsTitleBack,
+        stops: stopsStringBack,
+        duration: durationFormattedBack,
       },
-    ] } = ticket;
+    ],
+  } = ticket;
   return (
     <article className={classes.ticket}>
       <header className={classNames(classes['ticket-header'], classes.ticket__header)}>
@@ -31,30 +37,30 @@ const Ticket = (props: any) => {
       </header>
       <section className={classes['ticket-description']}>
         <div className={classes['ticket-description__column']}>
-          <h3 className={classes['ticket-description__title']}>{titleFrom}</h3>
-          <span className={classes['ticket-description__info']}>{dateFrom}</span>
+          <h3 className={classes['ticket-description__title']}>{titleThere}</h3>
+          <span className={classes['ticket-description__info']}>{departureThere}</span>
         </div>
         <div className={classes['ticket-description__column']}>
           <h3 className={classes['ticket-description__title']}>В ПУТИ</h3>
-          <span className={classes['ticket-description__info']}>{durationFormattedFrom}</span>
+          <span className={classes['ticket-description__info']}>{durationFormattedThere}</span>
         </div>
         <div className={classes['ticket-description__column']}>
-          <h3 className={classes['ticket-description__title']}>{stopsFrom.length} ПЕРЕСАДКИ</h3>
-          <span className={classes['ticket-description__info']}>{stopsStringFrom}</span>
+          <h3 className={classes['ticket-description__title']}>{stopsTitleThere}</h3>
+          <span className={classes['ticket-description__info']}>{stopsStringThere}</span>
         </div>
       </section>
       <section className={classes['ticket-description']}>
         <div className={classes['ticket-description__column']}>
-          <h3 className={classes['ticket-description__title']}>{titleTo}</h3>
-          <span className={classes['ticket-description__info']}>{dateTo}</span>
+          <h3 className={classes['ticket-description__title']}>{titleBack}</h3>
+          <span className={classes['ticket-description__info']}>{departureBack}</span>
         </div>
         <div className={classes['ticket-description__column']}>
           <h3 className={classes['ticket-description__title']}>В ПУТИ</h3>
-          <span className={classes['ticket-description__info']}>{durationFormattedTo}</span>
+          <span className={classes['ticket-description__info']}>{durationFormattedBack}</span>
         </div>
         <div className={classes['ticket-description__column']}>
-          <h3 className={classes['ticket-description__title']}>{stopsTo.length} ПЕРЕСАДКИ</h3>
-          <span className={classes['ticket-description__info']}>{stopsStringTo}</span>
+          <h3 className={classes['ticket-description__title']}>{stopsTitleBack}</h3>
+          <span className={classes['ticket-description__info']}>{stopsStringBack}</span>
         </div>
       </section>
     </article>

@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-import classes from './SortList.module.scss';
-import { SortValues } from '../../state/state';
+import { SortValues } from '../../lib/constants';
 import { setSortAction } from '../../store/actions/actions';
+
+import classes from './SortList.module.scss';
 
 const SortList = (props: any) => {
   const { sortId, setSort } = props;
