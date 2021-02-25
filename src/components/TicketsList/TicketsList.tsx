@@ -1,6 +1,7 @@
 import React from 'react';
-import classes from './TicketsList.module.scss';
 import Ticket from '../Ticket/Ticket';
+
+import classes from './TicketsList.module.scss';
 
 const TicketsList = (props: any) => {
 
