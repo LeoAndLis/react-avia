@@ -5,7 +5,8 @@ import {
   SET_FILTER,
   SET_SORT,
   SET_IS_LOADED,
-  SET_IS_LOADING_ERROR } from '../types/types';
+  SET_IS_LOADING_ERROR,
+} from '../types/types';
 
 export const setVisibleTicketsCount = (payload: number) => ({ type: ADD_VISIBLE_TICKETS, payload });
 

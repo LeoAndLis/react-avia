@@ -26,8 +26,7 @@ const isAllFiltersChecked = (filters: FilterType): boolean => {
   return true;
 };
 
-const filterReducer = (state: FilterType = filterDefaultItems, action: FilterActionType): FilterType => {
-  const { type, payload: filterId } = action;
+const filterReducer = (state: FilterType = filterDefaultItems, { type, payload: filterId }: FilterActionType): FilterType => {
   const filters = { ...state };
   switch (type) {
     case SET_FILTER:

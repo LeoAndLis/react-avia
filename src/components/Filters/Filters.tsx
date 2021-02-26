@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { setFilterAction } from '../../store/actions/actions';
-import { FilterType } from '../../lib/types';
+import { FilterType, StateType } from '../../lib/types';
 
 import classes from './Filters.module.scss';
 
@@ -10,14 +10,7 @@ type FiltersPropsType = {
   toggleFilter: (value: string) => void;
 };
 
-type StateType = {
-  sortId: number;
-  filters: FilterType;
-  ticketsList: any;
-};
-
-const Filters = (props: FiltersPropsType) => {
-  const { filters, toggleFilter } = props;
+const Filters = ({ filters, toggleFilter }: FiltersPropsType) => {
   const filterItems = [];
   for (const filterId in filters) {
     if (Object.prototype.hasOwnProperty.call(filters, filterId)) {

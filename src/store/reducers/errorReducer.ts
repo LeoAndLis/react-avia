@@ -4,8 +4,7 @@ type ErrorActionType = {
   type: string;
 };
 
-const errorReducer = (state: boolean = false, action: ErrorActionType) => {
-  const { type } = action;
+const errorReducer = (state: boolean = false, { type }: ErrorActionType) => {
   switch (type) {
     case SET_IS_LOADING_ERROR:
       return true;

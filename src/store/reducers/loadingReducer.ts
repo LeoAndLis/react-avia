@@ -5,8 +5,7 @@ type LoadingActionType = {
   payload: boolean;
 };
 
-const loadingReducer = (state: boolean = false, action: LoadingActionType) => {
-  const { type, payload } = action;
+const loadingReducer = (state: boolean = false, { type, payload }: LoadingActionType) => {
   switch (type) {
     case SET_IS_LOADED:
       return payload;

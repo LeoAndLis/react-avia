@@ -1,12 +1,15 @@
 import React from 'react';
 import Ticket from '../Ticket/Ticket';
+import { FormattedTicketType } from '../../lib/types';
 
 import classes from './TicketsList.module.scss';
 
-const TicketsList = (props: any) => {
+type TicketsListPropsType = {
+  ticketsList: FormattedTicketType[];
+};
 
-  const { ticketsList } = props;
-  const tickets = ticketsList.map((ticket: any) => (
+const TicketsList = ({ ticketsList }: TicketsListPropsType) => {
+  const tickets = ticketsList.map((ticket: FormattedTicketType) => (
     <li key={ticket.id} className={classes['tickets-list__item']}>
       <Ticket ticket={ticket}/>
     </li>));

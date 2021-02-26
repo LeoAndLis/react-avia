@@ -6,10 +6,10 @@ type SortActionType = {
   payload: number;
 };
 
-const sortReducer = (state: number = SortValues.cheep, action: SortActionType): number => {
-  switch (action.type) {
+const sortReducer = (state: number = SortValues.cheep, { type, payload }: SortActionType): number => {
+  switch (type) {
     case SET_SORT:
-      return action.payload;
+      return payload;
     default:
       return state;
   }
