@@ -2,19 +2,20 @@ import { format, addMinutes } from 'date-fns';
 import { FilterValues, SortValues, IMG_PATH } from './constants';
 import { FilterType, FormattedTicketType, TicketType } from './types';
 
-export const filteringTickets = (tickets: TicketType[], filters: FilterType) => {
-  const isAllFiltersUnChecked = (): boolean => {
-    for (const id in filters) {
-      if (Object.prototype.hasOwnProperty.call(filters, id)) {
-        if (filters[id].isChecked) {
-          return false;
-        }
+export const isAllFiltersUnchecked = (filters: FilterType): boolean => {
+  for (const id in filters) {
+    if (Object.prototype.hasOwnProperty.call(filters, id)) {
+      if (filters[id].isChecked) {
+        return false;
       }
     }
-    return true;
-  };
+  }
+  return true;
+};
 
-  if (isAllFiltersUnChecked()) {
+export const filteringTickets = (tickets: TicketType[], filters: FilterType) => {
+
+  if (isAllFiltersUnchecked(filters)) {
     return [];
   }
 

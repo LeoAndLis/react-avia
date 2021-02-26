@@ -29,7 +29,7 @@ const TicketsListContainer = ({ tickets, filters, sortId, isLoaded, loadingError
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ tickets, loadingError ]);
 
-  const errorMessage = loadingError.happened ? 
+  const errorMessage = loadingError.happened && !isLoaded ? 
     <Alert closable className={classes['alert-message']} type="error" message="Ошибка" description={loadingError.errorMsg} />
     : null;
 

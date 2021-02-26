@@ -2,18 +2,21 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { setVisibleTicketsCount } from '../../store/actions/actions';
 import { ADD_VISIBLE_TICKETS_COUNT } from '../../lib/constants';
-import { StateType, TicketType } from '../../lib/types';
+import { StateType, TicketType, FilterType } from '../../lib/types';
+import { isAllFiltersUnchecked } from '../../lib/functions';
 
 import classes from './AddVisibleTickets.module.scss';
 
 type AddVisibleTicketsProps = {
+  filters: FilterType;
   tickets: TicketType[];
   visibleTicketsCount: number;
   addVisibleTickets: (value: number) => void;
 };
 
-const AddVisibleTickets = ({ tickets, visibleTicketsCount, addVisibleTickets }: AddVisibleTicketsProps) => {
-  if (tickets.length <= visibleTicketsCount) {
+const AddVisibleTickets = ({ tickets, visibleTicketsCount, filters, addVisibleTickets }: AddVisibleTicketsProps) => {
+  console.log(isAllFiltersUnchecked(filters));
+  if (tickets.length <= visibleTicketsCount || isAllFiltersUnchecked(filters)) {
     return null;
   }
   
@@ -26,6 +29,7 @@ const AddVisibleTickets = ({ tickets, visibleTicketsCount, addVisibleTickets }: 
 
 const mapStateTopProps = (state: StateType) => ({
   tickets: state.tickets,
+  filters: state.filters,
   visibleTicketsCount: state.visibleTicketsCount,
 });
 
