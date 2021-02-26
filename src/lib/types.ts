@@ -1,3 +1,8 @@
+export type ErrorType = {
+  happened: boolean;
+  errorMsg: string;
+};
+
 export type FilterDataType = {
   label: string;
   isChecked: boolean;
@@ -43,7 +48,7 @@ export type SortActionType = {
 export type StateType = {
   filters: FilterType;
   isLoaded: boolean;
-  loadingError: boolean;
+  loadingError: ErrorType;
   sortId: number;
   tickets: TicketType[];
   visibleTicketsCount: number;
