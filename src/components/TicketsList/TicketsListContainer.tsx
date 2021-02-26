@@ -11,20 +11,20 @@ import 'antd/dist/antd.css';
 import classes from './TicketsList.module.scss';
 
 interface TicketsListContainerType extends StateType {
-  getTickets: () => void;
+  addTickets: () => void;
 }
 
-const TicketsListContainer = ({ tickets, filters, sortId, isLoaded, loadingError, visibleTicketsCount, getTickets }: TicketsListContainerType) => {
+const TicketsListContainer = ({ tickets, filters, sortId, isLoaded, loadingError, visibleTicketsCount, addTickets }: TicketsListContainerType) => {
 
   useEffect(() => {
-    getTickets();
+    addTickets();
   },
   // eslint-disable-next-line react-hooks/exhaustive-deps
   []);
 
   useEffect(() => {
     if ( !isLoaded ) {
-      getTickets();
+      addTickets();
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ tickets, loadingError ]);
@@ -64,6 +64,6 @@ const mapStateToProps = (state: StateType) => ({
   visibleTicketsCount: state.visibleTicketsCount,
 });
 
-const mapDispatchToProps = (dispatch: any) => ({ getTickets: () => dispatch(addTicketsAction()) });
+const mapDispatchToProps = (dispatch: any) => ({ addTickets: () => dispatch(addTicketsAction()) });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TicketsListContainer);

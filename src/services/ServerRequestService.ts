@@ -17,12 +17,12 @@ export default class ServerRequestService{
   }
 
   protected getSearchId(): Promise<string> {
-    return this.getResource(this.SEARCH_ID_PATH, { searchId: '1' }).then((result) => result.searchId);
+    return this.getResource(this.SEARCH_ID_PATH, {}).then((result) => result.searchId);
   }
 
   public async getResource(path: string, getParams: Object = {}, method: string = 'GET', postParams: Object = {}) {
     // @ts-ignore
-    if ( !this.searchId && getParams.searchId !== '1' ) {
+    if ( !this.searchId && path !== this.SEARCH_ID_PATH ) {
       this.searchId = await this.getSearchId();
     }
 
