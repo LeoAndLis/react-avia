@@ -15,7 +15,6 @@ type AddVisibleTicketsProps = {
 };
 
 const AddVisibleTickets = ({ tickets, visibleTicketsCount, filters, addVisibleTickets }: AddVisibleTicketsProps) => {
-  console.log(isAllFiltersUnchecked(filters));
   if (tickets.length <= visibleTicketsCount || isAllFiltersUnchecked(filters)) {
     return null;
   }
