@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { Alert, Progress } from 'antd';
 import TicketsList from './TicketsList';
 import { addTicketsAction } from '../../store/actions/actions';
+import { getFilteredTickets } from './TicketsSelectors';
 
 import { StateType } from '../../lib/types';
-import { filteringTickets, formatTickets, sortingTickets } from '../../lib/functions';
+import { formatTickets } from '../../lib/functions';
 
 import 'antd/dist/antd.css';
 import classes from './TicketsList.module.scss';
@@ -14,7 +15,7 @@ interface TicketsListContainerType extends StateType {
   addTickets: () => void;
 }
 
-const TicketsListContainer = ({ tickets, filters, sortId, isLoaded, loadingError, visibleTicketsCount, addTickets }: TicketsListContainerType) => {
+const TicketsListContainer = ({ tickets, isLoaded, loadingError, visibleTicketsCount, addTickets }: TicketsListContainerType) => {
 
   useEffect(() => {
     addTickets();
@@ -37,10 +38,7 @@ const TicketsListContainer = ({ tickets, filters, sortId, isLoaded, loadingError
     <Progress  percent={Math.floor(tickets.length / 100)} status="active" showInfo={false} />
     : null;
 
-  const resultTickets =
-    filteringTickets(tickets, filters)
-      .sort(sortingTickets(sortId))
-      .slice(0, visibleTicketsCount);
+  const resultTickets = tickets.slice(0, visibleTicketsCount);
 
   if (resultTickets.length === 0) {
     return <Alert className={classes['alert-message']} type="info" message="Информация" description="Рейсов, подходящих под заданные фильтры, не найдено" />;
@@ -60,7 +58,7 @@ const mapStateToProps = (state: StateType) => ({
   isLoaded: state.isLoaded,
   loadingError: state.loadingError,
   sortId: state.sortId,
-  tickets: state.tickets,
+  tickets: getFilteredTickets(state),
   visibleTicketsCount: state.visibleTicketsCount,
 });
 
