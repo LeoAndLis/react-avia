@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Alert, Progress } from 'antd';
 import TicketsList from './TicketsList';
 import { addTicketsAction } from '../../store/actions/actions';
-import { getFilteredTickets } from './TicketsSelectors';
+import { getSortedTickets } from './TicketsSelectors';
 
 import { StateType } from '../../lib/types';
 import { formatTickets } from '../../lib/functions';
@@ -58,7 +58,7 @@ const mapStateToProps = (state: StateType) => ({
   isLoaded: state.isLoaded,
   loadingError: state.loadingError,
   sortId: state.sortId,
-  tickets: getFilteredTickets(state),
+  tickets: getSortedTickets(state),
   visibleTicketsCount: state.visibleTicketsCount,
 });
 

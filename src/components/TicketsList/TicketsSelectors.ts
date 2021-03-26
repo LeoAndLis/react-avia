@@ -6,10 +6,10 @@ const getCurrentFilters = (state: StateType) => state.filters;
 const getCurrentTickets = (state: StateType) => state.tickets;
 const getCurrentSortId = (state: StateType) => state.sortId;
 
-export const getSortedTickets = createSelector(
-  [getCurrentTickets, getCurrentSortId],
-  (tickets: TicketType[], sortId: number) => tickets.sort(sortingTickets(sortId)));
-  
 export const getFilteredTickets = createSelector(
-  [getSortedTickets, getCurrentFilters],
-  (tickets: TicketType[], filters: FilterType) => filteringTickets(tickets, filters));
+  [getCurrentTickets, getCurrentFilters],
+  (tickets: TicketType[], filters: FilterType) => { console.log('filter'); return filteringTickets(tickets, filters);});
+
+export const getSortedTickets = createSelector(
+  [getFilteredTickets, getCurrentSortId],
+  (tickets: TicketType[], sortId: number) => { console.log('sort', tickets.length); return tickets.sort(sortingTickets(sortId));});
